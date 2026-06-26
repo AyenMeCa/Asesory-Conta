@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi panel | Asesory Contá</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google Fonts: Sora (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.min.css">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7C3AED',
+            'primary-dark': '#4C1D95',
+            'primary-light': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Anti-FOUC: revela el body cuando los estilos están aplicados -->
+  <script>
+    function revealBody() {
+      document.body.classList.add('styles-ready');
+    }
+    // Revela en cuanto la página termina de cargar (Tailwind CDN ya aplicó estilos)
+    window.addEventListener('load', revealBody);
+    // Fallback de seguridad: si 'load' tarda demasiado, revelar igual a los 600ms
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(revealBody, 600);
+    });
+  </script>
+  <noscript>
+    <style> body { opacity: 1 !important; } </style>
+  </noscript>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <div class="navbar min-h-[72px] bg-white border-b border-gray-100 sticky top-0 z-50 px-4 lg:px-10">
+
+    <!-- Hamburger mobile -->
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-sm px-2">
+          <i class="ti ti-menu-2 text-xl text-gray-600"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-lg bg-white rounded-xl border border-gray-100 w-60">
+          <li><a href="index.html" class="nav-page-link font-medium">Inicio</a></li>
+          <li><a href="buscar-empleo.html" class="nav-page-link">Buscar empleo</a></li>
+          <li><a href="asesorias.html" class="nav-page-link">Asesorías contables</a></li>
+          <li><a href="contadores.html" class="nav-page-link">Contadores independientes</a></li>
+          <li><a href="nosotros.html" class="nav-page-link">Sobre nosotros</a></li>
+          <li><a href="contacto.html" class="nav-page-link">Contacto</a></li>
+          <div class="divider my-1"></div>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html" class="bg-purple-700 text-white rounded-lg text-center justify-center font-semibold">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 ml-1">
+        <img src="images/logo.png" alt="Asesory Contá" class="h-12 lg:h-14 w-auto"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hidden items-center leading-none">
+          <span class="text-2xl font-black leading-tight">
+            <span class="text-purple-700">ASESORY</span><br>
+            <span class="text-gray-900">CONTÁ</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Links desktop -->
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-0.5 text-sm">
+        <li><a href="index.html" class="nav-page-link nav-link font-medium">Inicio</a></li>
+        <li><a href="buscar-empleo.html" class="nav-page-link nav-link font-medium">Buscar empleo</a></li>
+        <li><a href="asesorias.html" class="nav-page-link nav-link font-medium">Asesorías contables</a></li>
+        <li><a href="contadores.html" class="nav-page-link nav-link font-medium">Contadores independientes</a></li>
+        <li><a href="nosotros.html" class="nav-page-link nav-link font-medium">Sobre nosotros</a></li>
+        <li><a href="contacto.html" class="nav-page-link nav-link font-medium">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Auth (auth.js reemplaza esto por el dropdown de usuario al haber sesión) -->
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-ghost btn-sm normal-case text-sm text-gray-700 hidden sm:flex">
+        Iniciar sesión
+      </a>
+      <a href="registro.html" class="btn btn-sm normal-case text-sm text-white font-semibold bg-purple-700 hover:bg-purple-800 border-0 px-5 btn-registro">
+        Regístrate
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       CONTENIDO DE LA PÁGINA
+  ════════════════════════════════════════ -->
+  <main>
+
+    <!-- ════════════════════════════════════════
+         [S1] ENCABEZADO DE BIENVENIDA (común)
+    ════════════════════════════════════════ -->
+    <section class="bg-[#F5F3FF] py-10 px-4 lg:px-10" aria-labelledby="dash-welcome-title">
+      <div class="max-w-7xl mx-auto flex items-center gap-4">
+        <span id="dash-avatar"
+              class="w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-[#7C3AED] text-white font-bold text-lg flex items-center justify-center shrink-0"
+              aria-hidden="true"></span>
+        <div class="min-w-0">
+          <h1 id="dash-welcome-title" class="font-display font-extrabold text-2xl sm:text-3xl text-gray-900 leading-tight">
+            Hola, <span id="dash-nombre">Usuario</span> 👋
+          </h1>
+          <p class="mt-1.5">
+            <span id="dash-rol-badge" class="badge-empleo inline-block rounded-md px-3 py-1 text-sm font-medium">Panel</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         VISTA CANDIDATO
+    ════════════════════════════════════════ -->
+    <section id="dash-candidato" class="hidden bg-white py-10 px-4 lg:px-10" aria-labelledby="cand-title">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <h2 id="cand-title" class="sr-only">Panel de candidato</h2>
+
+        <!-- a) Stats rápidas -->
+        <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-bookmark text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">5</div>
+            <div class="text-gray-500 text-sm mt-1">Empleos guardados</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-send text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">3</div>
+            <div class="text-gray-500 text-sm mt-1">Postulaciones enviadas</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-eye text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">8</div>
+            <div class="text-gray-500 text-sm mt-1">Perfil visto por empresas</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-user-check text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">70%</div>
+            <div class="text-gray-500 text-sm mt-1">Perfil completado</div>
+          </li>
+        </ul>
+
+        <!-- b) Mis postulaciones -->
+        <div>
+          <h2 class="section-title text-gray-900 mb-5">Mis postulaciones</h2>
+          <ul class="space-y-3">
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <span class="w-10 h-10 rounded-lg bg-[#7C3AED] text-white font-bold text-sm flex items-center justify-center shrink-0">EA</span>
+                <div class="min-w-0">
+                  <h3 class="font-bold text-gray-900 leading-tight truncate">Analista Contable</h3>
+                  <p class="text-gray-500 text-sm truncate">Contables ABC S.A.S.</p>
+                  <p class="flex items-center gap-1 text-gray-400 text-xs mt-0.5">
+                    <i class="ti ti-map-pin text-sm shrink-0" aria-hidden="true"></i> Bogotá, D.C.
+                  </p>
+                </div>
+              </div>
+              <span class="inline-flex items-center self-start sm:self-center rounded-md px-2.5 py-1 text-xs font-medium bg-[#FEF3C7] text-[#B45309]">En revisión</span>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <span class="w-10 h-10 rounded-lg bg-[#2563EB] text-white font-bold text-sm flex items-center justify-center shrink-0">GF</span>
+                <div class="min-w-0">
+                  <h3 class="font-bold text-gray-900 leading-tight truncate">Auxiliar Contable</h3>
+                  <p class="text-gray-500 text-sm truncate">Grupo Financiero Andino</p>
+                  <p class="flex items-center gap-1 text-gray-400 text-xs mt-0.5">
+                    <i class="ti ti-map-pin text-sm shrink-0" aria-hidden="true"></i> Medellín, Antioquia
+                  </p>
+                </div>
+              </div>
+              <span class="inline-flex items-center self-start sm:self-center rounded-md px-2.5 py-1 text-xs font-medium bg-[#DBEAFE] text-[#2563EB]">Vista</span>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+              <div class="flex items-center gap-3 min-w-0 flex-1">
+                <span class="w-10 h-10 rounded-lg bg-[#DC2626] text-white font-bold text-sm flex items-center justify-center shrink-0">DF</span>
+                <div class="min-w-0">
+                  <h3 class="font-bold text-gray-900 leading-tight truncate">Asesor Fiscal</h3>
+                  <p class="text-gray-500 text-sm truncate">Despacho Tributario Pro</p>
+                  <p class="flex items-center gap-1 text-gray-400 text-xs mt-0.5">
+                    <i class="ti ti-map-pin text-sm shrink-0" aria-hidden="true"></i> Barranquilla, Atlántico
+                  </p>
+                </div>
+              </div>
+              <span class="inline-flex items-center self-start sm:self-center rounded-md px-2.5 py-1 text-xs font-medium bg-gray-100 text-gray-600">Enviada</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- c) Empleos recomendados -->
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-5">
+            <h2 class="section-title text-gray-900">Recomendados para ti</h2>
+            <a href="buscar-empleo.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1 shrink-0">
+              Ver todos <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </div>
+          <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <li>
+              <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-lg bg-[#059669] text-white font-bold text-sm flex items-center justify-center shrink-0">CE</span>
+                  <div class="min-w-0">
+                    <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Contador General</h3>
+                    <p class="text-gray-500 text-xs truncate">Consultoría Empresarial Ltda.</p>
+                  </div>
+                </div>
+                <p class="flex items-center gap-1 text-gray-500 text-xs">
+                  <i class="ti ti-map-pin text-sm shrink-0" aria-hidden="true"></i> Cali, Valle del Cauca
+                </p>
+                <span class="badge-empleo inline-block self-start rounded-md px-2.5 py-1 text-xs font-medium">Tiempo completo</span>
+              </a>
+            </li>
+            <li>
+              <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-lg bg-[#D97706] text-white font-bold text-sm flex items-center justify-center shrink-0">GN</span>
+                  <div class="min-w-0">
+                    <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Jefe de Nómina</h3>
+                    <p class="text-gray-500 text-xs truncate">Soluciones Nómina S.A.S.</p>
+                  </div>
+                </div>
+                <p class="flex items-center gap-1 text-gray-500 text-xs">
+                  <i class="ti ti-map-pin text-sm shrink-0" aria-hidden="true"></i> Bucaramanga, Santander
+                </p>
+                <span class="badge-empleo inline-block self-start rounded-md px-2.5 py-1 text-xs font-medium">Tiempo completo</span>
+              </a>
+            </li>
+            <li>
+              <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-lg bg-[#0891B2] text-white font-bold text-sm flex items-center justify-center shrink-0">AI</span>
+                  <div class="min-w-0">
+                    <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Auditor Interno</h3>
+                    <p class="text-gray-500 text-xs truncate">Auditores Asociados de Colombia</p>
+                  </div>
+                </div>
+                <p class="flex items-center gap-1 text-gray-500 text-xs">
+                  <i class="ti ti-map-pin text-sm shrink-0" aria-hidden="true"></i> Cartagena, Bolívar
+                </p>
+                <span class="badge-empleo inline-block self-start rounded-md px-2.5 py-1 text-xs font-medium">Tiempo completo</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- d) Completar perfil — banner CTA -->
+        <div class="bg-[#4C1D95] rounded-2xl p-8 flex flex-col lg:flex-row lg:items-center gap-6">
+          <div class="flex-1">
+            <h2 class="text-white font-display font-bold text-xl sm:text-2xl leading-snug mb-2">Completa tu perfil para destacar</h2>
+            <p class="text-violet-200 text-sm leading-relaxed mb-4 max-w-lg">
+              Los perfiles completos reciben hasta 3 veces más vistas de las empresas. Te falta poco.
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="flex-1 max-w-xs h-2.5 rounded-full bg-white/20 overflow-hidden" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Perfil completado al 70%">
+                <div class="h-full rounded-full bg-[#C4B5FD]" style="width: 70%;"></div>
+              </div>
+              <span class="text-violet-100 text-sm font-semibold shrink-0">70%</span>
+            </div>
+          </div>
+          <button type="button" class="btn-white shrink-0 self-start lg:self-center">Completar perfil</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         VISTA EMPRESA
+    ════════════════════════════════════════ -->
+    <section id="dash-empresa" class="hidden bg-white py-10 px-4 lg:px-10" aria-labelledby="emp-title">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <h2 id="emp-title" class="sr-only">Panel de empresa</h2>
+
+        <!-- a) Stats rápidas -->
+        <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-briefcase text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">4</div>
+            <div class="text-gray-500 text-sm mt-1">Vacantes activas</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-users text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">27</div>
+            <div class="text-gray-500 text-sm mt-1">Postulantes totales</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-eye text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">312</div>
+            <div class="text-gray-500 text-sm mt-1">Vistas de tus vacantes</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-clock text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">2</div>
+            <div class="text-gray-500 text-sm mt-1">Vacantes por revisar</div>
+          </li>
+        </ul>
+
+        <!-- b) Publicar nueva vacante -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 bg-[#F5F3FF] border border-[#E9D5FF] rounded-xl p-5">
+          <div>
+            <h2 class="font-bold text-gray-900 text-lg">¿Buscas más talento?</h2>
+            <p class="text-gray-500 text-sm">Publica una vacante y recibe postulaciones de candidatos contables.</p>
+          </div>
+          <button type="button" id="emp-publicar" class="btn-solid shrink-0 self-start sm:self-auto">
+            <i class="ti ti-plus text-base" aria-hidden="true"></i> Publicar nueva vacante
+          </button>
+        </div>
+
+        <!-- c) Mis vacantes publicadas -->
+        <div>
+          <h2 class="section-title text-gray-900 mb-5">Tus vacantes</h2>
+          <ul class="space-y-3">
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="font-bold text-gray-900 leading-tight">Analista Contable</h3>
+                  <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Activa
+                  </span>
+                </div>
+                <div class="flex items-center gap-x-4 gap-y-1 flex-wrap text-gray-500 text-sm mt-1.5">
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-map-pin text-sm" aria-hidden="true"></i> Bogotá, D.C.</span>
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-users text-sm" aria-hidden="true"></i> 12 postulantes</span>
+                </div>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-outline btn-sm-pill">Ver postulantes</button>
+                <button type="button" class="btn-outline btn-sm-pill">Editar</button>
+              </div>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="font-bold text-gray-900 leading-tight">Auxiliar Contable</h3>
+                  <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Activa
+                  </span>
+                </div>
+                <div class="flex items-center gap-x-4 gap-y-1 flex-wrap text-gray-500 text-sm mt-1.5">
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-map-pin text-sm" aria-hidden="true"></i> Medellín, Antioquia</span>
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-users text-sm" aria-hidden="true"></i> 8 postulantes</span>
+                </div>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-outline btn-sm-pill">Ver postulantes</button>
+                <button type="button" class="btn-outline btn-sm-pill">Editar</button>
+              </div>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="font-bold text-gray-900 leading-tight">Contador General</h3>
+                  <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Activa
+                  </span>
+                </div>
+                <div class="flex items-center gap-x-4 gap-y-1 flex-wrap text-gray-500 text-sm mt-1.5">
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-map-pin text-sm" aria-hidden="true"></i> Cali, Valle del Cauca</span>
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-users text-sm" aria-hidden="true"></i> 5 postulantes</span>
+                </div>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-outline btn-sm-pill">Ver postulantes</button>
+                <button type="button" class="btn-outline btn-sm-pill">Editar</button>
+              </div>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <div class="min-w-0 flex-1">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <h3 class="font-bold text-gray-900 leading-tight">Asesor Fiscal</h3>
+                  <span class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium bg-gray-100 text-gray-600">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gray-400" aria-hidden="true"></span> Pausada
+                  </span>
+                </div>
+                <div class="flex items-center gap-x-4 gap-y-1 flex-wrap text-gray-500 text-sm mt-1.5">
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-map-pin text-sm" aria-hidden="true"></i> Barranquilla, Atlántico</span>
+                  <span class="inline-flex items-center gap-1"><i class="ti ti-users text-sm" aria-hidden="true"></i> 2 postulantes</span>
+                </div>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-outline btn-sm-pill">Ver postulantes</button>
+                <button type="button" class="btn-outline btn-sm-pill">Editar</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- d) Candidatos recientes -->
+        <div>
+          <h2 class="section-title text-gray-900 mb-5">Postulantes recientes</h2>
+          <ul class="space-y-3">
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full bg-[#7C3AED] text-white font-bold text-sm flex items-center justify-center shrink-0">LV</span>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-bold text-gray-900 leading-tight truncate">Laura Vargas</h3>
+                <p class="text-gray-500 text-sm truncate">Postuló a · Analista Contable</p>
+              </div>
+              <button type="button" class="btn-outline btn-sm-pill shrink-0">Ver perfil</button>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full bg-[#2563EB] text-white font-bold text-sm flex items-center justify-center shrink-0">DR</span>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-bold text-gray-900 leading-tight truncate">Daniel Rojas</h3>
+                <p class="text-gray-500 text-sm truncate">Postuló a · Auxiliar Contable</p>
+              </div>
+              <button type="button" class="btn-outline btn-sm-pill shrink-0">Ver perfil</button>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex items-center gap-4">
+              <span class="w-11 h-11 rounded-full bg-[#059669] text-white font-bold text-sm flex items-center justify-center shrink-0">CM</span>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-bold text-gray-900 leading-tight truncate">Camila Moreno</h3>
+                <p class="text-gray-500 text-sm truncate">Postuló a · Contador General</p>
+              </div>
+              <button type="button" class="btn-outline btn-sm-pill shrink-0">Ver perfil</button>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         VISTA CONTADOR
+    ════════════════════════════════════════ -->
+    <section id="dash-contador" class="hidden bg-white py-10 px-4 lg:px-10" aria-labelledby="cont-title">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <h2 id="cont-title" class="sr-only">Panel de contador</h2>
+
+        <!-- a) Stats rápidas -->
+        <ul class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-inbox text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">6</div>
+            <div class="text-gray-500 text-sm mt-1">Solicitudes nuevas</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-checklist text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">18</div>
+            <div class="text-gray-500 text-sm mt-1">Asesorías completadas</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#FEF3C7] flex items-center justify-center mb-3">
+              <i class="ti ti-star text-xl text-[#F59E0B]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-3xl">4.9</div>
+            <div class="text-gray-500 text-sm mt-1">Calificación promedio</div>
+          </li>
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-5">
+            <span class="w-11 h-11 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-3">
+              <i class="ti ti-coins text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <div class="stat-number text-gray-900 text-2xl lg:text-3xl">$6.500.000</div>
+            <div class="text-gray-500 text-sm mt-1">Ingresos del mes (COP)</div>
+          </li>
+        </ul>
+
+        <!-- b) Solicitudes de clientes -->
+        <div>
+          <h2 class="section-title text-gray-900 mb-5">Solicitudes de clientes</h2>
+          <ul class="space-y-3">
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <span class="w-11 h-11 rounded-full bg-[#7C3AED] text-white font-bold text-sm flex items-center justify-center shrink-0">EA</span>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-bold text-gray-900 leading-tight truncate">Empresa ABC</h3>
+                <p class="text-gray-500 text-sm truncate">Declaración de renta</p>
+                <p class="text-gray-400 text-xs mt-0.5">Hace 2 horas</p>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-solid btn-sm-pill">Aceptar</button>
+                <button type="button" class="btn-outline btn-sm-pill">Rechazar</button>
+              </div>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <span class="w-11 h-11 rounded-full bg-[#2563EB] text-white font-bold text-sm flex items-center justify-center shrink-0">JM</span>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-bold text-gray-900 leading-tight truncate">Juan Martínez</h3>
+                <p class="text-gray-500 text-sm truncate">Asesoría contable mensual</p>
+                <p class="text-gray-400 text-xs mt-0.5">Hace 1 día</p>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-solid btn-sm-pill">Aceptar</button>
+                <button type="button" class="btn-outline btn-sm-pill">Rechazar</button>
+              </div>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col lg:flex-row lg:items-center gap-4">
+              <span class="w-11 h-11 rounded-full bg-[#059669] text-white font-bold text-sm flex items-center justify-center shrink-0">CC</span>
+              <div class="min-w-0 flex-1">
+                <h3 class="font-bold text-gray-900 leading-tight truncate">Comercializadora del Caribe</h3>
+                <p class="text-gray-500 text-sm truncate">Auditoría interna</p>
+                <p class="text-gray-400 text-xs mt-0.5">Hace 2 días</p>
+              </div>
+              <div class="flex gap-2 shrink-0">
+                <button type="button" class="btn-solid btn-sm-pill">Aceptar</button>
+                <button type="button" class="btn-outline btn-sm-pill">Rechazar</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- c) Mis servicios -->
+        <div>
+          <div class="flex items-center justify-between gap-3 mb-5">
+            <h2 class="section-title text-gray-900">Tus servicios</h2>
+            <button type="button" class="btn-outline btn-sm-pill shrink-0">
+              <i class="ti ti-plus text-base" aria-hidden="true"></i> Agregar servicio
+            </button>
+          </div>
+          <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-bold text-gray-900 leading-tight">Contabilidad mensual</h3>
+                <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium shrink-0">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Activo
+                </span>
+              </div>
+              <p class="text-[#7C3AED] font-bold text-lg mt-auto">$800.000 <span class="text-gray-400 text-sm font-medium">COP / mes</span></p>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-bold text-gray-900 leading-tight">Declaración de renta</h3>
+                <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium shrink-0">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Activo
+                </span>
+              </div>
+              <p class="text-[#7C3AED] font-bold text-lg mt-auto">$350.000 <span class="text-gray-400 text-sm font-medium">COP</span></p>
+            </li>
+            <li class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-bold text-gray-900 leading-tight">Auditoría</h3>
+                <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium shrink-0">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Activo
+                </span>
+              </div>
+              <p class="text-[#7C3AED] font-bold text-lg mt-auto">$1.200.000 <span class="text-gray-400 text-sm font-medium">COP</span></p>
+            </li>
+          </ul>
+        </div>
+
+        <!-- d) Reseñas recientes -->
+        <div>
+          <h2 class="section-title text-gray-900 mb-5">Reseñas recientes</h2>
+          <ul class="grid sm:grid-cols-2 gap-4">
+            <li class="bg-white border border-gray-200 rounded-xl p-5">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h3 class="font-bold text-gray-900 leading-tight">Juan Martínez</h3>
+                <span class="flex text-[#F59E0B]" aria-label="5 de 5 estrellas">
+                  <i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i>
+                </span>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">Excelente acompañamiento en mi declaración de renta. Muy claro y puntual.</p>
+            </li>
+            <li class="bg-white border border-gray-200 rounded-xl p-5">
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <h3 class="font-bold text-gray-900 leading-tight">Empresa ABC</h3>
+                <span class="flex text-[#F59E0B]" aria-label="5 de 5 estrellas">
+                  <i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i><i class="ti ti-star-filled" aria-hidden="true"></i>
+                </span>
+              </div>
+              <p class="text-gray-600 text-sm leading-relaxed">Profesional y confiable. Llevó nuestra contabilidad mensual sin un solo error.</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-gray-950 text-gray-400 pt-14 pb-8 px-4 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="col-span-2 lg:col-span-1">
+          <div class="font-black text-lg leading-tight text-white mb-3">
+            <span class="text-purple-400">ASESORY</span><br>CONTÁ
+          </div>
+          <p class="text-sm leading-relaxed mb-5">
+            Conectamos talento y brindamos soluciones contables para ayudarte a crecer.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-linkedin text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Enlaces</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+            <li><a href="asesorias.html" class="hover:text-white transition-colors">Asesorías contables</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Contadores independientes</a></li>
+            <li><a href="nosotros.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Para candidatos -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para candidatos</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html" class="hover:text-white transition-colors">Crear cuenta</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para empresas -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para empresas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=empresa" class="hover:text-white transition-colors">Publicar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para contadores -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para contadores</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=contador" class="hover:text-white transition-colors">Registrarme como contador</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Cómo funciona</a></li>
+            <li><a href="contadores.html#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
+        © 2024 ASESORY CONTA. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS compartido -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+  <!-- Lógica del dashboard: protección + render por rol -->
+  <script>
+    (function () {
+      var ROLE_BADGE = { candidato: 'Candidato', empresa: 'Empresa', contador: 'Contador' };
+
+      document.addEventListener('DOMContentLoaded', function () {
+        // Protección: sin sesión, fuera.
+        var user = getCurrentUser();
+        if (!user) {
+          window.location.href = 'login.html';
+          return;
+        }
+
+        // Personalizar encabezado de bienvenida
+        var nombreEl = document.getElementById('dash-nombre');
+        var badgeEl = document.getElementById('dash-rol-badge');
+        var avatarEl = document.getElementById('dash-avatar');
+        if (nombreEl) nombreEl.textContent = user.name;
+        if (badgeEl) badgeEl.textContent = 'Panel de ' + (ROLE_BADGE[user.role] || 'Usuario');
+        if (avatarEl) avatarEl.textContent = user.initials || getInitials(user.name);
+
+        // Mostrar SOLO la vista del rol correspondiente
+        var vistas = { candidato: 'dash-candidato', empresa: 'dash-empresa', contador: 'dash-contador' };
+        var vistaId = vistas[user.role] || 'dash-candidato';
+        var vista = document.getElementById(vistaId);
+        if (vista) vista.classList.remove('hidden');
+      });
+    })();
+  </script>
+
+</body>
+</html>

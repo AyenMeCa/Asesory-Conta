@@ -61,10 +61,10 @@ function authenticate(email, password) {
   return { name: found.name, email: found.email, role: found.role, initials: found.initials };
 }
 
-// Guarda sesión y redirige al inicio
+// Guarda sesión y redirige al panel del usuario
 function loginUser(userObj) {
   localStorage.setItem(SESSION_KEY, JSON.stringify(userObj));
-  window.location.href = 'index.html';
+  window.location.href = 'dashboard.html';
 }
 
 // Registra un usuario nuevo (lo acumula) y lo deja en sesión
@@ -77,7 +77,7 @@ function registerUser(userObj) {
     role: userObj.role, initials: userObj.initials,
   };
   localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-  window.location.href = 'index.html';
+  window.location.href = 'dashboard.html';
 }
 
 // Cierra sesión y vuelve al inicio
@@ -120,6 +120,7 @@ function updateNavbar() {
           '</div>' +
         '</li>' +
         '<div class="divider my-0"></div>' +
+        '<li><a href="dashboard.html" class="font-medium text-gray-700"><i class="ti ti-layout-dashboard" aria-hidden="true"></i> Mi panel</a></li>' +
         '<li><a id="logout-link" class="text-[#DC2626] font-medium"><i class="ti ti-logout" aria-hidden="true"></i> Cerrar sesión</a></li>' +
       '</ul>' +
     '</div>';

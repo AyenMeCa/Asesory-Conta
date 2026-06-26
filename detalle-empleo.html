@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de empleo | Asesory Contá</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google Fonts: Sora (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.min.css">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7C3AED',
+            'primary-dark': '#4C1D95',
+            'primary-light': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Anti-FOUC: revela el body cuando los estilos están aplicados -->
+  <script>
+    function revealBody() {
+      document.body.classList.add('styles-ready');
+    }
+    // Revela en cuanto la página termina de cargar (Tailwind CDN ya aplicó estilos)
+    window.addEventListener('load', revealBody);
+    // Fallback de seguridad: si 'load' tarda demasiado, revelar igual a los 600ms
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(revealBody, 600);
+    });
+  </script>
+  <noscript>
+    <style> body { opacity: 1 !important; } </style>
+  </noscript>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <div class="navbar min-h-[72px] bg-white border-b border-gray-100 sticky top-0 z-50 px-4 lg:px-10">
+
+    <!-- Hamburger mobile -->
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-sm px-2">
+          <i class="ti ti-menu-2 text-xl text-gray-600"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-lg bg-white rounded-xl border border-gray-100 w-60">
+          <li><a href="index.html" class="nav-page-link font-medium">Inicio</a></li>
+          <li><a href="buscar-empleo.html" class="nav-page-link">Buscar empleo</a></li>
+          <li><a href="asesorias.html" class="nav-page-link">Asesorías contables</a></li>
+          <li><a href="contadores.html" class="nav-page-link">Contadores independientes</a></li>
+          <li><a href="nosotros.html" class="nav-page-link">Sobre nosotros</a></li>
+          <li><a href="contacto.html" class="nav-page-link">Contacto</a></li>
+          <div class="divider my-1"></div>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html" class="bg-purple-700 text-white rounded-lg text-center justify-center font-semibold">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 ml-1">
+        <img src="images/logo.png" alt="Asesory Contá" class="h-12 lg:h-14 w-auto"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hidden items-center leading-none">
+          <span class="text-2xl font-black leading-tight">
+            <span class="text-purple-700">ASESORY</span><br>
+            <span class="text-gray-900">CONTÁ</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Links desktop -->
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-0.5 text-sm">
+        <li><a href="index.html" class="nav-page-link nav-link font-medium">Inicio</a></li>
+        <li><a href="buscar-empleo.html" class="nav-page-link nav-link font-medium">Buscar empleo</a></li>
+        <li><a href="asesorias.html" class="nav-page-link nav-link font-medium">Asesorías contables</a></li>
+        <li><a href="contadores.html" class="nav-page-link nav-link font-medium">Contadores independientes</a></li>
+        <li><a href="nosotros.html" class="nav-page-link nav-link font-medium">Sobre nosotros</a></li>
+        <li><a href="contacto.html" class="nav-page-link nav-link font-medium">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Auth -->
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-ghost btn-sm normal-case text-sm text-gray-700 hidden sm:flex">
+        Iniciar sesión
+      </a>
+      <a href="registro.html" class="btn btn-sm normal-case text-sm text-white font-semibold bg-purple-700 hover:bg-purple-800 border-0 px-5 btn-registro">
+        Regístrate
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       CONTENIDO DE LA PÁGINA
+  ════════════════════════════════════════ -->
+  <main>
+
+    <!-- ════════════════════════════════════════
+         [S1] BREADCRUMB + HEADER DEL EMPLEO
+    ════════════════════════════════════════ -->
+    <section class="bg-white py-8 px-4 lg:px-10 border-b border-gray-200" aria-labelledby="job-title">
+      <div class="max-w-6xl mx-auto">
+
+        <nav aria-label="Migas de pan" class="mb-5">
+          <a href="buscar-empleo.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1">
+            <i class="ti ti-arrow-left"></i> Volver a empleos
+          </a>
+        </nav>
+
+        <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+
+          <!-- Info del empleo -->
+          <div class="flex gap-4">
+            <span class="w-14 h-14 rounded-xl bg-[#7C3AED] text-white font-bold text-lg flex items-center justify-center shrink-0">EA</span>
+            <div class="min-w-0">
+              <h1 id="job-title" class="font-display font-extrabold text-2xl sm:text-3xl text-gray-900 leading-tight mb-1">
+                Analista Contable
+              </h1>
+              <p class="text-gray-500 mb-3">Empresa ABC</p>
+              <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-gray-500 text-sm">
+                <span class="inline-flex items-center gap-1">
+                  <i class="ti ti-map-pin text-base"></i> Bogotá, D.C.
+                </span>
+                <span class="inline-flex items-center gap-1">
+                  <i class="ti ti-clock text-base"></i> Publicado hace 1 día
+                </span>
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Tiempo completo</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Acciones -->
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+            <button type="button" class="btn-solid w-full sm:w-auto lg:w-full">
+              <i class="ti ti-send text-base"></i> Postularme
+            </button>
+            <button type="button" class="btn-outline w-full sm:w-auto lg:w-full">
+              <i class="ti ti-bookmark text-base"></i> Guardar
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S2] CUERPO A 2 COLUMNAS
+    ════════════════════════════════════════ -->
+    <section class="bg-[#F9FAFB] py-10 px-4 lg:px-10" aria-labelledby="detalles-title">
+      <div class="max-w-6xl mx-auto grid lg:grid-cols-3 gap-8 lg:gap-10">
+        <h2 id="detalles-title" class="sr-only">Detalles del empleo</h2>
+
+        <!-- Columna principal (en mobile va debajo del sidebar) -->
+        <div class="lg:col-span-2 order-2 lg:order-1 space-y-8">
+
+          <div>
+            <h3 class="font-display font-bold text-lg text-gray-900 mb-3">Descripción del puesto</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Estamos buscando un Analista Contable responsable, analítico y con ganas de crecer
+              profesionalmente para integrarse a nuestro equipo. Serás parte del área financiera,
+              apoyando en el registro y control de las operaciones contables de la empresa.
+            </p>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-lg text-gray-900 mb-3">Responsabilidades</h3>
+            <ul class="space-y-2.5">
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-check text-[#059669] text-base mt-1 shrink-0"></i>
+                <span>Registro y análisis de operaciones contables</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-check text-[#059669] text-base mt-1 shrink-0"></i>
+                <span>Elaboración de estados financieros</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-check text-[#059669] text-base mt-1 shrink-0"></i>
+                <span>Conciliaciones bancarias</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-check text-[#059669] text-base mt-1 shrink-0"></i>
+                <span>Cumplimiento de obligaciones fiscales</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-check text-[#059669] text-base mt-1 shrink-0"></i>
+                <span>Apoyo en auditorías internas y externas</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="font-display font-bold text-lg text-gray-900 mb-3">Requisitos</h3>
+            <ul class="space-y-2.5">
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-circle-check text-[#7C3AED] text-base mt-1 shrink-0"></i>
+                <span>Profesional en Contaduría Pública (con tarjeta profesional)</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-circle-check text-[#7C3AED] text-base mt-1 shrink-0"></i>
+                <span>2+ años de experiencia en un puesto similar</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-circle-check text-[#7C3AED] text-base mt-1 shrink-0"></i>
+                <span>Conocimiento en Siigo y Excel avanzado</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-gray-600">
+                <i class="ti ti-circle-check text-[#7C3AED] text-base mt-1 shrink-0"></i>
+                <span>Manejo de Normas Internacionales de Información Financiera (NIIF)</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Sidebar (en mobile sube arriba de la descripción) -->
+        <aside class="lg:col-span-1 order-1 lg:order-2">
+          <div class="job-sidebar bg-white border border-gray-200 rounded-xl p-6">
+            <ul class="divide-y divide-gray-200">
+              <li class="py-3 first:pt-0">
+                <p class="text-gray-500 text-xs mb-0.5">Salario</p>
+                <p class="text-gray-900 font-semibold">$2.800.000 – $3.800.000 COP mensuales</p>
+              </li>
+              <li class="py-3">
+                <p class="text-gray-500 text-xs mb-0.5">Tipo de puesto</p>
+                <p class="text-gray-900 font-semibold">Tiempo completo</p>
+              </li>
+              <li class="py-3">
+                <p class="text-gray-500 text-xs mb-0.5">Experiencia</p>
+                <p class="text-gray-900 font-semibold">2 años mínimo</p>
+              </li>
+              <li class="py-3">
+                <p class="text-gray-500 text-xs mb-0.5">Nivel de estudios</p>
+                <p class="text-gray-900 font-semibold">Profesional universitario</p>
+              </li>
+              <li class="py-3 last:pb-0">
+                <p class="text-gray-500 text-xs mb-0.5">Área laboral</p>
+                <p class="text-gray-900 font-semibold">Contabilidad / Finanzas</p>
+              </li>
+            </ul>
+            <button type="button" class="btn-solid w-full mt-5">
+              <i class="ti ti-send text-base"></i> Postularme
+            </button>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S3] CTA INFERIOR
+    ════════════════════════════════════════ -->
+    <section class="bg-[#4C1D95] py-10 px-4 lg:px-10" aria-labelledby="cta-title">
+      <div class="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-center md:text-left">
+        <div>
+          <h2 id="cta-title" class="font-display font-bold text-2xl text-white leading-snug mb-1.5">
+            ¿Te interesa este puesto?
+          </h2>
+          <p class="text-violet-200">Postúlate ahora y da el siguiente paso en tu carrera contable.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 shrink-0">
+          <button type="button" class="btn-white w-full sm:w-auto">
+            <i class="ti ti-send text-base"></i> Postularme ahora
+          </button>
+          <button type="button" class="text-violet-200 text-sm underline-offset-4 hover:underline">
+            Guardar para después
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-gray-950 text-gray-400 pt-14 pb-8 px-4 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="col-span-2 lg:col-span-1">
+          <div class="font-black text-lg leading-tight text-white mb-3">
+            <span class="text-purple-400">ASESORY</span><br>CONTÁ
+          </div>
+          <p class="text-sm leading-relaxed mb-5">
+            Conectamos talento y brindamos soluciones contables para ayudarte a crecer.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-linkedin text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Enlaces</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+            <li><a href="asesorias.html" class="hover:text-white transition-colors">Asesorías contables</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Contadores independientes</a></li>
+            <li><a href="nosotros.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Para candidatos -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para candidatos</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html" class="hover:text-white transition-colors">Crear cuenta</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para empresas -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para empresas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=empresa" class="hover:text-white transition-colors">Publicar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para contadores -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para contadores</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=contador" class="hover:text-white transition-colors">Registrarme como contador</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Cómo funciona</a></li>
+            <li><a href="contadores.html#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
+        © 2024 ASESORY CONTA. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS compartido -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>

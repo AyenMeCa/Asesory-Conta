@@ -1,0 +1,440 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contadores independientes | Asesory Contá</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google Fonts: Sora (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.min.css">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7C3AED',
+            'primary-dark': '#4C1D95',
+            'primary-light': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Anti-FOUC: revela el body cuando los estilos están aplicados -->
+  <script>
+    function revealBody() {
+      document.body.classList.add('styles-ready');
+    }
+    // Revela en cuanto la página termina de cargar (Tailwind CDN ya aplicó estilos)
+    window.addEventListener('load', revealBody);
+    // Fallback de seguridad: si 'load' tarda demasiado, revelar igual a los 600ms
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(revealBody, 600);
+    });
+  </script>
+  <noscript>
+    <style> body { opacity: 1 !important; } </style>
+  </noscript>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <div class="navbar min-h-[72px] bg-white border-b border-gray-100 sticky top-0 z-50 px-4 lg:px-10">
+
+    <!-- Hamburger mobile -->
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-sm px-2">
+          <i class="ti ti-menu-2 text-xl text-gray-600"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-lg bg-white rounded-xl border border-gray-100 w-60">
+          <li><a href="index.html" class="nav-page-link font-medium">Inicio</a></li>
+          <li><a href="buscar-empleo.html" class="nav-page-link">Buscar empleo</a></li>
+          <li><a href="asesorias.html" class="nav-page-link">Asesorías contables</a></li>
+          <li><a href="contadores.html" class="nav-page-link nav-active">Contadores independientes</a></li>
+          <li><a href="nosotros.html" class="nav-page-link">Sobre nosotros</a></li>
+          <li><a href="contacto.html" class="nav-page-link">Contacto</a></li>
+          <div class="divider my-1"></div>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html" class="bg-purple-700 text-white rounded-lg text-center justify-center font-semibold">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 ml-1">
+        <img src="images/logo.png" alt="Asesory Contá" class="h-12 lg:h-14 w-auto"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hidden items-center leading-none">
+          <span class="text-2xl font-black leading-tight">
+            <span class="text-purple-700">ASESORY</span><br>
+            <span class="text-gray-900">CONTÁ</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Links desktop -->
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-0.5 text-sm">
+        <li><a href="index.html" class="nav-page-link nav-link font-medium">Inicio</a></li>
+        <li><a href="buscar-empleo.html" class="nav-page-link nav-link font-medium">Buscar empleo</a></li>
+        <li><a href="asesorias.html" class="nav-page-link nav-link font-medium">Asesorías contables</a></li>
+        <li><a href="contadores.html" class="nav-page-link nav-link nav-active font-medium">Contadores independientes</a></li>
+        <li><a href="nosotros.html" class="nav-page-link nav-link font-medium">Sobre nosotros</a></li>
+        <li><a href="contacto.html" class="nav-page-link nav-link font-medium">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Auth -->
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-ghost btn-sm normal-case text-sm text-gray-700 hidden sm:flex">
+        Iniciar sesión
+      </a>
+      <a href="registro.html" class="btn btn-sm normal-case text-sm text-white font-semibold bg-purple-700 hover:bg-purple-800 border-0 px-5 btn-registro">
+        Regístrate
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       CONTENIDO DE LA PÁGINA
+  ════════════════════════════════════════ -->
+  <main>
+
+    <!-- ════════════════════════════════════════
+         [S1] MINI HERO (gradiente)
+    ════════════════════════════════════════ -->
+    <section class="hero-contadores py-12 lg:py-16 px-4 lg:px-10" aria-labelledby="ch-title">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+
+        <div class="text-center lg:text-left">
+          <p class="eyebrow text-violet-200 mb-3">Para contadores</p>
+          <h1 id="ch-title" class="hero-title text-white mb-4">
+            Convierte tu expertise contable <span class="text-[#C4B5FD]">en ingresos remotos.</span>
+          </h1>
+          <p class="text-violet-200 leading-relaxed mb-7 max-w-lg mx-auto lg:mx-0">
+            Únete a la red de contadores independientes de Asesory Contá. Ofrece tus servicios,
+            define tus tarifas y trabaja con clientes desde donde quieras.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <a href="registro.html?tipo=contador" class="btn-white w-full sm:w-auto">
+              <i class="ti ti-user-plus text-base" aria-hidden="true"></i> Registrarme como contador
+            </a>
+            <a href="#beneficios" class="btn-ghost-light w-full sm:w-auto">Conocer beneficios</a>
+          </div>
+        </div>
+
+        <!-- Imagen decorativa (solo desktop) -->
+        <div class="hidden lg:block relative">
+          <div class="absolute inset-0 bg-white opacity-[0.06] rounded-3xl rotate-3 blur-2xl" aria-hidden="true"></div>
+          <div class="relative rounded-2xl overflow-hidden">
+            <img src="images/contador.png"
+                 alt="Contador independiente trabajando de forma remota desde su espacio de trabajo"
+                 class="object-contain w-full max-h-[460px] mx-auto"
+                 loading="lazy"
+                 onerror="this.src='https://placehold.co/520x340/6D28D9/ffffff?text=Contador+Independiente'">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S2] BENEFICIOS
+    ════════════════════════════════════════ -->
+    <section id="beneficios" class="bg-white py-16 px-4 lg:px-10" aria-labelledby="benef-title">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 id="benef-title" class="section-title text-gray-900 mb-3">¿Por qué unirte a Asesory Contá?</h2>
+          <p class="text-gray-500">Todo lo que necesitas para hacer crecer tu práctica contable de forma independiente.</p>
+        </div>
+
+        <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-world text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Trabajo 100% remoto</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Atiende a tus clientes desde cualquier lugar, sin necesidad de oficina física.
+            </p>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-rocket text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Publica tus servicios</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Crea tu perfil profesional y muestra tu experiencia a miles de clientes potenciales.
+            </p>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-inbox text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Clientes que te buscan</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Recibe solicitudes de personas y empresas interesadas en tus conocimientos.
+            </p>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-currency-dollar text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Define tus tarifas</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Tú decides cuánto cobrar por tus servicios y en qué horarios trabajar.
+            </p>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-network text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Amplía tu red</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">
+              Conecta con otros profesionales y haz crecer tu red de contactos y oportunidades.
+            </p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S3] STATS ORIENTADAS AL CONTADOR
+    ════════════════════════════════════════ -->
+    <section class="bg-[#EDE9FE] py-14 px-4 lg:px-10" aria-labelledby="cstats-title">
+      <div class="max-w-7xl mx-auto">
+        <h2 id="cstats-title" class="sr-only">Resultados de los contadores en Asesory Contá</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+          <li>
+            <div class="stat-number text-[#7C3AED] text-3xl lg:text-4xl">+1.200</div>
+            <div class="text-gray-500 text-sm mt-1">Contadores activos en la plataforma</div>
+          </li>
+          <li>
+            <div class="stat-number text-[#7C3AED] text-3xl lg:text-4xl">+8.500</div>
+            <div class="text-gray-500 text-sm mt-1">Asesorías completadas con éxito</div>
+          </li>
+          <li>
+            <div class="stat-number text-[#7C3AED] text-3xl lg:text-4xl">$6.500.000</div>
+            <div class="text-gray-500 text-sm mt-1">Ingreso promedio mensual (COP)</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S4] ¿CÓMO FUNCIONA PARA CONTADORES?
+    ════════════════════════════════════════ -->
+    <section class="bg-white py-16 px-4 lg:px-10" aria-labelledby="cpasos-title">
+      <div class="max-w-7xl mx-auto">
+        <h2 id="cpasos-title" class="section-title text-gray-900 text-center mb-14">Empieza en 3 pasos</h2>
+        <div class="flex flex-col md:flex-row md:items-start md:justify-center gap-10 md:gap-0 max-w-4xl mx-auto">
+
+          <div class="flex flex-col items-center text-center md:w-[210px] shrink-0">
+            <span class="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4">
+              <i class="ti ti-user-plus text-2xl text-white" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1.5">1. Crea tu perfil verificado</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Regístrate y valida tus credenciales profesionales para generar confianza.</p>
+          </div>
+
+          <div class="step-connector hidden md:block" aria-hidden="true"></div>
+
+          <div class="flex flex-col items-center text-center md:w-[210px] shrink-0">
+            <span class="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4">
+              <i class="ti ti-briefcase text-2xl text-white" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1.5">2. Publica tus servicios</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Define tus áreas de especialidad, tus tarifas y tu disponibilidad.</p>
+          </div>
+
+          <div class="step-connector hidden md:block" aria-hidden="true"></div>
+
+          <div class="flex flex-col items-center text-center md:w-[210px] shrink-0">
+            <span class="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4">
+              <i class="ti ti-coins text-2xl text-white" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1.5">3. Recibe clientes y cobra</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Conecta con clientes, brinda tus asesorías y haz crecer tus ingresos.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S5] REQUISITOS PARA UNIRSE
+    ════════════════════════════════════════ -->
+    <section class="bg-[#F5F3FF] py-16 px-4 lg:px-10" aria-labelledby="req-title">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+
+        <div>
+          <h2 id="req-title" class="section-title text-gray-900 mb-4">Requisitos para unirte</h2>
+          <p class="text-gray-600 leading-relaxed">
+            Buscamos profesionales calificados que ofrezcan un servicio de calidad. Para formar parte
+            de nuestra red necesitas cumplir con lo siguiente:
+          </p>
+        </div>
+
+        <ul class="space-y-4">
+          <li class="flex items-start gap-3 text-gray-700">
+            <i class="ti ti-circle-check text-[#059669] text-xl mt-0.5 shrink-0" aria-hidden="true"></i>
+            <span>Título profesional en Contaduría Pública o afín</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700">
+            <i class="ti ti-circle-check text-[#059669] text-xl mt-0.5 shrink-0" aria-hidden="true"></i>
+            <span>Cédula profesional vigente</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700">
+            <i class="ti ti-circle-check text-[#059669] text-xl mt-0.5 shrink-0" aria-hidden="true"></i>
+            <span>Mínimo 2 años de experiencia comprobable</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700">
+            <i class="ti ti-circle-check text-[#059669] text-xl mt-0.5 shrink-0" aria-hidden="true"></i>
+            <span>Disponibilidad para atención remota</span>
+          </li>
+          <li class="flex items-start gap-3 text-gray-700">
+            <i class="ti ti-circle-check text-[#059669] text-xl mt-0.5 shrink-0" aria-hidden="true"></i>
+            <span>Compromiso con la calidad y la ética profesional</span>
+          </li>
+        </ul>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S6] CTA FINAL
+    ════════════════════════════════════════ -->
+    <section class="hero-contadores py-12 px-4 lg:px-10" aria-labelledby="ccta-title">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2 id="ccta-title" class="font-display font-bold text-2xl sm:text-3xl text-white leading-snug mb-2">
+          Empieza a generar ingresos hoy
+        </h2>
+        <p class="text-violet-200 mb-7 max-w-xl mx-auto">
+          Únete a cientos de contadores que ya hacen crecer su práctica con Asesory Contá.
+        </p>
+        <div class="flex flex-col items-center gap-3">
+          <a href="registro.html?tipo=contador" class="btn-white inline-flex">
+            <i class="ti ti-user-plus text-base" aria-hidden="true"></i> Registrarme como Contador
+          </a>
+          <a href="#" class="text-violet-200 text-sm underline-offset-4 hover:underline">Ver preguntas frecuentes</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-gray-950 text-gray-400 pt-14 pb-8 px-4 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="col-span-2 lg:col-span-1">
+          <div class="font-black text-lg leading-tight text-white mb-3">
+            <span class="text-purple-400">ASESORY</span><br>CONTÁ
+          </div>
+          <p class="text-sm leading-relaxed mb-5">
+            Conectamos talento y brindamos soluciones contables para ayudarte a crecer.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-linkedin text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Enlaces</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+            <li><a href="asesorias.html" class="hover:text-white transition-colors">Asesorías contables</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Contadores independientes</a></li>
+            <li><a href="nosotros.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Para candidatos -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para candidatos</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html" class="hover:text-white transition-colors">Crear cuenta</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para empresas -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para empresas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=empresa" class="hover:text-white transition-colors">Publicar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para contadores -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para contadores</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=contador" class="hover:text-white transition-colors">Registrarme como contador</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Cómo funciona</a></li>
+            <li><a href="contadores.html#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
+        © 2024 ASESORY CONTA. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS compartido -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>

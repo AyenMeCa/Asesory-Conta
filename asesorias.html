@@ -1,0 +1,477 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asesorías contables | Asesory Contá</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google Fonts: Sora (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.min.css">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7C3AED',
+            'primary-dark': '#4C1D95',
+            'primary-light': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Anti-FOUC: revela el body cuando los estilos están aplicados -->
+  <script>
+    function revealBody() {
+      document.body.classList.add('styles-ready');
+    }
+    // Revela en cuanto la página termina de cargar (Tailwind CDN ya aplicó estilos)
+    window.addEventListener('load', revealBody);
+    // Fallback de seguridad: si 'load' tarda demasiado, revelar igual a los 600ms
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(revealBody, 600);
+    });
+  </script>
+  <noscript>
+    <style> body { opacity: 1 !important; } </style>
+  </noscript>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <div class="navbar min-h-[72px] bg-white border-b border-gray-100 sticky top-0 z-50 px-4 lg:px-10">
+
+    <!-- Hamburger mobile -->
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-sm px-2">
+          <i class="ti ti-menu-2 text-xl text-gray-600"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-lg bg-white rounded-xl border border-gray-100 w-60">
+          <li><a href="index.html" class="nav-page-link font-medium">Inicio</a></li>
+          <li><a href="buscar-empleo.html" class="nav-page-link">Buscar empleo</a></li>
+          <li><a href="asesorias.html" class="nav-page-link nav-active">Asesorías contables</a></li>
+          <li><a href="contadores.html" class="nav-page-link">Contadores independientes</a></li>
+          <li><a href="nosotros.html" class="nav-page-link">Sobre nosotros</a></li>
+          <li><a href="contacto.html" class="nav-page-link">Contacto</a></li>
+          <div class="divider my-1"></div>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html" class="bg-purple-700 text-white rounded-lg text-center justify-center font-semibold">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 ml-1">
+        <img src="images/logo.png" alt="Asesory Contá" class="h-12 lg:h-14 w-auto"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hidden items-center leading-none">
+          <span class="text-2xl font-black leading-tight">
+            <span class="text-purple-700">ASESORY</span><br>
+            <span class="text-gray-900">CONTÁ</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Links desktop -->
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-0.5 text-sm">
+        <li><a href="index.html" class="nav-page-link nav-link font-medium">Inicio</a></li>
+        <li><a href="buscar-empleo.html" class="nav-page-link nav-link font-medium">Buscar empleo</a></li>
+        <li><a href="asesorias.html" class="nav-page-link nav-link nav-active font-medium">Asesorías contables</a></li>
+        <li><a href="contadores.html" class="nav-page-link nav-link font-medium">Contadores independientes</a></li>
+        <li><a href="nosotros.html" class="nav-page-link nav-link font-medium">Sobre nosotros</a></li>
+        <li><a href="contacto.html" class="nav-page-link nav-link font-medium">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Auth -->
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-ghost btn-sm normal-case text-sm text-gray-700 hidden sm:flex">
+        Iniciar sesión
+      </a>
+      <a href="registro.html" class="btn btn-sm normal-case text-sm text-white font-semibold bg-purple-700 hover:bg-purple-800 border-0 px-5 btn-registro">
+        Regístrate
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       CONTENIDO DE LA PÁGINA
+  ════════════════════════════════════════ -->
+  <main>
+
+    <!-- ════════════════════════════════════════
+         [S1] MINI HERO
+    ════════════════════════════════════════ -->
+    <section class="bg-[#4C1D95] py-12 lg:py-16 px-4 lg:px-10" aria-labelledby="ah-title">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+
+        <div class="text-center lg:text-left">
+          <p class="eyebrow text-violet-200 mb-3">Servicios contables</p>
+          <h1 id="ah-title" class="hero-title text-white mb-4">
+            Soluciones contables <span class="text-[#C4B5FD]">profesionales para tu negocio.</span>
+          </h1>
+          <p class="text-violet-200 leading-relaxed mb-7 max-w-lg mx-auto lg:mx-0">
+            Encuentra contadores expertos que resuelven tus necesidades contables, fiscales y
+            financieras. Sin complicaciones, con total confianza.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <a href="#servicios" class="btn-white w-full sm:w-auto">
+              <i class="ti ti-clipboard-list text-base" aria-hidden="true"></i> Solicitar asesoría
+            </a>
+            <a href="#contadores-disponibles" class="btn-ghost-light w-full sm:w-auto">Ver contadores</a>
+          </div>
+        </div>
+
+        <!-- Imagen decorativa (solo desktop) -->
+        <div class="hidden lg:block relative">
+          <div class="absolute inset-0 bg-white opacity-[0.06] rounded-3xl rotate-3 blur-2xl" aria-hidden="true"></div>
+          <div class="relative rounded-2xl overflow-hidden">
+            <img src="images/cumputadora_calculadora.png"
+                 alt="Escritorio contable con laptop mostrando gráficas financieras, calculadora y documentos"
+                 class="object-contain w-full max-h-[420px] mx-auto"
+                 loading="lazy"
+                 onerror="this.src='https://placehold.co/520x320/4C1D95/ffffff?text=Asesoria+Contable'">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S2] CATÁLOGO DE SERVICIOS
+    ════════════════════════════════════════ -->
+    <section id="servicios" class="bg-white py-16 px-4 lg:px-10" aria-labelledby="serv-title">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 id="serv-title" class="section-title text-gray-900 mb-3">Nuestros servicios</h2>
+          <p class="text-gray-500">Soluciones profesionales adaptadas a las necesidades de tu negocio.</p>
+        </div>
+
+        <ul class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col h-full">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-book text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Contabilidad general</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+              Llevamos la contabilidad de tu empresa cumpliendo con las normas vigentes y manteniendo tus libros al día.
+            </p>
+            <a href="contacto.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1">
+              Solicitar <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col h-full">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-file-invoice text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Declaraciones fiscales</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+              Presentamos tus declaraciones de impuestos de forma correcta y oportuna, evitando sanciones.
+            </p>
+            <a href="contacto.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1">
+              Solicitar <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col h-full">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-search text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Auditoría</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+              Revisamos y evaluamos tus procesos contables para asegurar la transparencia y el cumplimiento.
+            </p>
+            <a href="contacto.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1">
+              Solicitar <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </li>
+
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col h-full">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center mb-4">
+              <i class="ti ti-chart-line text-xl text-[#7C3AED]" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-2">Consultoría financiera</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-4 flex-1">
+              Te ayudamos a tomar decisiones financieras inteligentes para hacer crecer tu negocio.
+            </p>
+            <a href="contacto.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1">
+              Solicitar <i class="ti ti-arrow-right" aria-hidden="true"></i>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S3] ¿CÓMO SOLICITAR UNA ASESORÍA?
+    ════════════════════════════════════════ -->
+    <section class="bg-[#F5F3FF] py-16 px-4 lg:px-10" aria-labelledby="proceso-title">
+      <div class="max-w-7xl mx-auto">
+        <h2 id="proceso-title" class="section-title text-gray-900 text-center mb-14">¿Cómo solicitar una asesoría?</h2>
+        <div class="flex flex-col md:flex-row md:items-start md:justify-center gap-10 md:gap-0 max-w-4xl mx-auto">
+
+          <div class="flex flex-col items-center text-center md:w-[210px] shrink-0">
+            <span class="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4">
+              <i class="ti ti-message-circle text-2xl text-white" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1.5">1. Describe tu necesidad</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Cuéntanos qué servicio contable necesitas para tu empresa o proyecto.</p>
+          </div>
+
+          <div class="step-connector hidden md:block" aria-hidden="true"></div>
+
+          <div class="flex flex-col items-center text-center md:w-[210px] shrink-0">
+            <span class="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4">
+              <i class="ti ti-users text-2xl text-white" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1.5">2. Te conectamos con un contador</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Te asignamos un profesional especializado según tu necesidad.</p>
+          </div>
+
+          <div class="step-connector hidden md:block" aria-hidden="true"></div>
+
+          <div class="flex flex-col items-center text-center md:w-[210px] shrink-0">
+            <span class="w-14 h-14 rounded-full bg-[#7C3AED] flex items-center justify-center mb-4">
+              <i class="ti ti-circle-check text-2xl text-white" aria-hidden="true"></i>
+            </span>
+            <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1.5">3. Recibe tu asesoría</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Trabaja con tu contador de forma remota y resuelve lo que necesitas.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S4] CONTADORES DISPONIBLES
+    ════════════════════════════════════════ -->
+    <section id="contadores-disponibles" class="bg-white py-16 px-4 lg:px-10" aria-labelledby="disp-title">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
+          <h2 id="disp-title" class="section-title text-gray-900">Contadores disponibles</h2>
+          <a href="registro.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1 shrink-0">
+            Ver todos <i class="ti ti-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <ul class="grid md:grid-cols-3 gap-5">
+
+          <!-- Contador 1 -->
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-4 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-14 h-14 rounded-full bg-[#7C3AED] text-white font-bold flex items-center justify-center shrink-0">MR</span>
+              <div class="min-w-0">
+                <h3 class="font-bold text-gray-900 leading-tight">María Ramírez</h3>
+                <p class="text-gray-500 text-sm">Contadora Pública · Fiscal</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex text-[#F59E0B]" aria-hidden="true">
+                <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i>
+              </span>
+              <span class="font-semibold text-gray-900">4.9</span>
+              <span class="text-gray-500">(32 reseñas)</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-empleo inline-block rounded-md px-2.5 py-1 text-xs font-medium">Impuestos</span>
+              <span class="badge-empleo inline-block rounded-md px-2.5 py-1 text-xs font-medium">NIIF</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 mt-auto pt-1">
+              <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Disponible
+              </span>
+              <a href="contacto.html" class="btn-outline btn-sm-pill">Contactar</a>
+            </div>
+          </li>
+
+          <!-- Contador 2 -->
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-4 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-14 h-14 rounded-full bg-[#2563EB] text-white font-bold flex items-center justify-center shrink-0">JC</span>
+              <div class="min-w-0">
+                <h3 class="font-bold text-gray-900 leading-tight">Jorge Castro</h3>
+                <p class="text-gray-500 text-sm">Auditor Senior</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex text-[#F59E0B]" aria-hidden="true">
+                <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i>
+              </span>
+              <span class="font-semibold text-gray-900">4.8</span>
+              <span class="text-gray-500">(27 reseñas)</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-empleo inline-block rounded-md px-2.5 py-1 text-xs font-medium">Auditoría</span>
+              <span class="badge-empleo inline-block rounded-md px-2.5 py-1 text-xs font-medium">Control interno</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 mt-auto pt-1">
+              <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Disponible
+              </span>
+              <a href="contacto.html" class="btn-outline btn-sm-pill">Contactar</a>
+            </div>
+          </li>
+
+          <!-- Contador 3 -->
+          <li class="card-hover bg-white border border-gray-200 rounded-xl p-6 flex flex-col gap-4 h-full">
+            <div class="flex items-center gap-3">
+              <span class="w-14 h-14 rounded-full bg-[#059669] text-white font-bold flex items-center justify-center shrink-0">LV</span>
+              <div class="min-w-0">
+                <h3 class="font-bold text-gray-900 leading-tight">Laura Vega</h3>
+                <p class="text-gray-500 text-sm">Asesora Financiera</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-sm">
+              <span class="flex text-[#F59E0B]" aria-hidden="true">
+                <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i>
+              </span>
+              <span class="font-semibold text-gray-900">5.0</span>
+              <span class="text-gray-500">(41 reseñas)</span>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <span class="badge-empleo inline-block rounded-md px-2.5 py-1 text-xs font-medium">Finanzas</span>
+              <span class="badge-empleo inline-block rounded-md px-2.5 py-1 text-xs font-medium">Presupuestos</span>
+            </div>
+            <div class="flex items-center justify-between gap-2 mt-auto pt-1">
+              <span class="badge-disponible inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#059669]" aria-hidden="true"></span> Disponible
+              </span>
+              <a href="contacto.html" class="btn-outline btn-sm-pill">Contactar</a>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S5] CTA FINAL
+    ════════════════════════════════════════ -->
+    <section class="bg-[#4C1D95] py-12 px-4 lg:px-10" aria-labelledby="acta-title">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2 id="acta-title" class="font-display font-bold text-2xl sm:text-3xl text-white leading-snug mb-2">
+          ¿Listo para impulsar tu negocio?
+        </h2>
+        <p class="text-violet-200 mb-7 max-w-xl mx-auto">
+          Solicita una asesoría hoy y deja tu contabilidad en manos de expertos.
+        </p>
+        <a href="contacto.html" class="btn-white inline-flex">
+          <i class="ti ti-clipboard-list text-base" aria-hidden="true"></i> Solicitar asesoría ahora
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-gray-950 text-gray-400 pt-14 pb-8 px-4 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="col-span-2 lg:col-span-1">
+          <div class="font-black text-lg leading-tight text-white mb-3">
+            <span class="text-purple-400">ASESORY</span><br>CONTÁ
+          </div>
+          <p class="text-sm leading-relaxed mb-5">
+            Conectamos talento y brindamos soluciones contables para ayudarte a crecer.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-linkedin text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Enlaces</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+            <li><a href="asesorias.html" class="hover:text-white transition-colors">Asesorías contables</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Contadores independientes</a></li>
+            <li><a href="nosotros.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Para candidatos -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para candidatos</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html" class="hover:text-white transition-colors">Crear cuenta</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para empresas -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para empresas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=empresa" class="hover:text-white transition-colors">Publicar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para contadores -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para contadores</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=contador" class="hover:text-white transition-colors">Registrarme como contador</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Cómo funciona</a></li>
+            <li><a href="contadores.html#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
+        © 2024 ASESORY CONTA. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS compartido -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>

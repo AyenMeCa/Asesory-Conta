@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buscar empleo | Asesory Contá</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google Fonts: Sora (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.min.css">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7C3AED',
+            'primary-dark': '#4C1D95',
+            'primary-light': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Anti-FOUC: revela el body cuando los estilos están aplicados -->
+  <script>
+    function revealBody() {
+      document.body.classList.add('styles-ready');
+    }
+    // Revela en cuanto la página termina de cargar (Tailwind CDN ya aplicó estilos)
+    window.addEventListener('load', revealBody);
+    // Fallback de seguridad: si 'load' tarda demasiado, revelar igual a los 600ms
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(revealBody, 600);
+    });
+  </script>
+  <noscript>
+    <style> body { opacity: 1 !important; } </style>
+  </noscript>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <div class="navbar min-h-[72px] bg-white border-b border-gray-100 sticky top-0 z-50 px-4 lg:px-10">
+
+    <!-- Hamburger mobile -->
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-sm px-2">
+          <i class="ti ti-menu-2 text-xl text-gray-600"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-lg bg-white rounded-xl border border-gray-100 w-60">
+          <li><a href="index.html" class="nav-page-link font-medium">Inicio</a></li>
+          <li><a href="buscar-empleo.html" class="nav-page-link nav-active">Buscar empleo</a></li>
+          <li><a href="asesorias.html" class="nav-page-link">Asesorías contables</a></li>
+          <li><a href="contadores.html" class="nav-page-link">Contadores independientes</a></li>
+          <li><a href="nosotros.html" class="nav-page-link">Sobre nosotros</a></li>
+          <li><a href="contacto.html" class="nav-page-link">Contacto</a></li>
+          <div class="divider my-1"></div>
+          <li><a href="login.html">Iniciar sesión</a></li>
+          <li><a href="registro.html" class="bg-purple-700 text-white rounded-lg text-center justify-center font-semibold">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 ml-1">
+        <img src="images/logo.png" alt="Asesory Contá" class="h-12 lg:h-14 w-auto"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hidden items-center leading-none">
+          <span class="text-2xl font-black leading-tight">
+            <span class="text-purple-700">ASESORY</span><br>
+            <span class="text-gray-900">CONTÁ</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Links desktop -->
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-0.5 text-sm">
+        <li><a href="index.html" class="nav-page-link nav-link font-medium">Inicio</a></li>
+        <li><a href="buscar-empleo.html" class="nav-page-link nav-link nav-active font-medium">Buscar empleo</a></li>
+        <li><a href="asesorias.html" class="nav-page-link nav-link font-medium">Asesorías contables</a></li>
+        <li><a href="contadores.html" class="nav-page-link nav-link font-medium">Contadores independientes</a></li>
+        <li><a href="nosotros.html" class="nav-page-link nav-link font-medium">Sobre nosotros</a></li>
+        <li><a href="contacto.html" class="nav-page-link nav-link font-medium">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Auth -->
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-ghost btn-sm normal-case text-sm text-gray-700 hidden sm:flex">
+        Iniciar sesión
+      </a>
+      <a href="registro.html" class="btn btn-sm normal-case text-sm text-white font-semibold bg-purple-700 hover:bg-purple-800 border-0 px-5 btn-registro">
+        Regístrate
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       CONTENIDO DE LA PÁGINA
+  ════════════════════════════════════════ -->
+  <main>
+
+    <!-- ════════════════════════════════════════
+         [S1] MINI HERO
+    ════════════════════════════════════════ -->
+    <section class="bg-[#4C1D95] py-12 lg:py-16 px-4 lg:px-10" aria-labelledby="bh-title">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+
+        <div class="text-center lg:text-left">
+          <h1 id="bh-title" class="hero-title text-white mb-4">
+            Encuentra empleo. <span class="text-[#C4B5FD]">Impulsa tu futuro.</span>
+          </h1>
+          <p class="text-violet-200 leading-relaxed mb-7 max-w-lg mx-auto lg:mx-0">
+            Conectamos talento con empresas y ofrecemos asesorías contables para ayudarte a crecer.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <a href="#buscador" class="btn-white w-full sm:w-auto">
+              <i class="ti ti-search text-base"></i> Buscar empleo
+            </a>
+            <a href="asesorias.html" class="btn-ghost-light w-full sm:w-auto">Conocer asesorías</a>
+          </div>
+        </div>
+
+        <!-- Imagen decorativa (solo desktop) -->
+        <div class="hidden lg:block relative">
+          <div class="absolute inset-0 bg-white opacity-[0.06] rounded-3xl rotate-3 blur-2xl"></div>
+          <img src="images/entrevista.png"
+               alt="Profesional contable sonriente en una oficina moderna"
+               class="relative rounded-2xl object-cover object-top w-full h-[340px] shadow-sm ring-1 ring-white/20"
+               loading="lazy"
+               onerror="this.src='https://placehold.co/520x340/7C3AED/ffffff?text=Profesionales+Contables'">
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S2] VALUE PROPS — barra de confianza
+    ════════════════════════════════════════ -->
+    <section class="bg-white py-10 px-4 lg:px-10 border-b border-gray-200" aria-labelledby="vp-title">
+      <div class="max-w-7xl mx-auto">
+        <h2 id="vp-title" class="sr-only">Por qué buscar empleo en Asesory Contá</h2>
+        <ul class="grid md:grid-cols-3 gap-6">
+          <li class="flex items-start gap-4">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center shrink-0">
+              <i class="ti ti-briefcase text-xl text-[#7C3AED]"></i>
+            </span>
+            <div>
+              <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1">Miles de empleos</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Nuevas oportunidades cada día.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center shrink-0">
+              <i class="ti ti-user-check text-xl text-[#7C3AED]"></i>
+            </span>
+            <div>
+              <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1">Asesorías expertas</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Soluciones contables para tu negocio.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="w-12 h-12 rounded-full bg-[#EDE9FE] flex items-center justify-center shrink-0">
+              <i class="ti ti-shield-check text-xl text-[#7C3AED]"></i>
+            </span>
+            <div>
+              <h3 class="text-[1.0625rem] font-bold text-gray-900 mb-1">Confiable y seguro</h3>
+              <p class="text-gray-500 text-sm leading-relaxed">Plataforma segura y fácil de usar.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S3] BUSCADOR + FILTROS
+    ════════════════════════════════════════ -->
+    <section id="buscador" class="bg-[#F5F3FF] py-12 px-4 lg:px-10" aria-labelledby="search-title">
+      <div class="max-w-7xl mx-auto">
+        <div class="mb-6">
+          <h2 id="search-title" class="section-title text-gray-900 mb-1">Buscar empleo</h2>
+          <p class="text-gray-500">Encuentra la oportunidad ideal para ti.</p>
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <form class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 flex flex-col md:flex-row gap-3"
+              onsubmit="return false">
+          <div class="relative flex-1">
+            <label for="q-puesto" class="sr-only">Puesto, palabras clave o empresa</label>
+            <i class="ti ti-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none"></i>
+            <input id="q-puesto" type="text" placeholder="Puesto, palabras clave o empresa"
+                   class="w-full h-12 pl-10 pr-3 rounded-lg border border-gray-200 text-sm focus:border-[#7C3AED]">
+          </div>
+          <div class="relative flex-1">
+            <label for="q-ubicacion" class="sr-only">Ubicación</label>
+            <i class="ti ti-map-pin absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none"></i>
+            <input id="q-ubicacion" type="text" placeholder="Ubicación"
+                   class="w-full h-12 pl-10 pr-3 rounded-lg border border-gray-200 text-sm focus:border-[#7C3AED]">
+          </div>
+          <button type="submit" class="btn-solid h-12 shrink-0">
+            <i class="ti ti-search text-base"></i> Buscar empleo
+          </button>
+        </form>
+
+        <!-- Filtros de categoría -->
+        <div class="mt-6">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+            <h3 class="text-sm font-semibold text-gray-900">Categorías populares</h3>
+            <a href="buscar-empleo.html" class="link-arrow text-[#7C3AED] text-sm font-semibold inline-flex items-center gap-1">
+              Ver todas <i class="ti ti-arrow-right"></i>
+            </a>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button type="button" class="cat-pill active">Contabilidad</button>
+            <button type="button" class="cat-pill">Finanzas</button>
+            <button type="button" class="cat-pill">Administración</button>
+            <button type="button" class="cat-pill">Auditoría</button>
+            <button type="button" class="cat-pill">Impuestos</button>
+            <button type="button" class="cat-pill">Más categorías</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════
+         [S4] GRID DE EMPLEOS
+    ════════════════════════════════════════ -->
+    <section class="bg-white py-12 px-4 lg:px-10" aria-labelledby="jobs-title">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap items-end justify-between gap-2 mb-8">
+          <h2 id="jobs-title" class="section-title text-gray-900">Empleos destacados</h2>
+          <p class="text-gray-500 text-sm">18 empleos encontrados</p>
+        </div>
+
+        <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- Empleo 1 -->
+          <li>
+            <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-lg bg-[#7C3AED] text-white font-bold text-sm flex items-center justify-center shrink-0">EA</span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Analista Contable</h3>
+                  <p class="text-gray-500 text-xs truncate">Contables ABC S.A.S.</p>
+                </div>
+              </div>
+              <p class="flex items-center gap-1 text-gray-500 text-xs">
+                <i class="ti ti-map-pin text-sm shrink-0"></i> Bogotá, D.C.
+              </p>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Tiempo completo</span>
+                <span class="text-gray-400 text-xs">Hace 1 día</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Empleo 2 -->
+          <li>
+            <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-lg bg-[#2563EB] text-white font-bold text-sm flex items-center justify-center shrink-0">GF</span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Auxiliar Contable</h3>
+                  <p class="text-gray-500 text-xs truncate">Grupo Financiero Andino</p>
+                </div>
+              </div>
+              <p class="flex items-center gap-1 text-gray-500 text-xs">
+                <i class="ti ti-map-pin text-sm shrink-0"></i> Medellín, Antioquia
+              </p>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Tiempo completo</span>
+                <span class="text-gray-400 text-xs">Hace 2 días</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Empleo 3 -->
+          <li>
+            <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-lg bg-[#059669] text-white font-bold text-sm flex items-center justify-center shrink-0">CE</span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Contador General</h3>
+                  <p class="text-gray-500 text-xs truncate">Consultoría Empresarial Ltda.</p>
+                </div>
+              </div>
+              <p class="flex items-center gap-1 text-gray-500 text-xs">
+                <i class="ti ti-map-pin text-sm shrink-0"></i> Cali, Valle del Cauca
+              </p>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Tiempo completo</span>
+                <span class="text-gray-400 text-xs">Hace 3 días</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Empleo 4 -->
+          <li>
+            <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-lg bg-[#DC2626] text-white font-bold text-sm flex items-center justify-center shrink-0">DF</span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Asesor Fiscal</h3>
+                  <p class="text-gray-500 text-xs truncate">Despacho Tributario Pro</p>
+                </div>
+              </div>
+              <p class="flex items-center gap-1 text-gray-500 text-xs">
+                <i class="ti ti-map-pin text-sm shrink-0"></i> Barranquilla, Atlántico
+              </p>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Medio tiempo</span>
+                <span class="text-gray-400 text-xs">Hace 4 días</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Empleo 5 -->
+          <li>
+            <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-lg bg-[#D97706] text-white font-bold text-sm flex items-center justify-center shrink-0">GN</span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Jefe de Nómina</h3>
+                  <p class="text-gray-500 text-xs truncate">Soluciones Nómina S.A.S.</p>
+                </div>
+              </div>
+              <p class="flex items-center gap-1 text-gray-500 text-xs">
+                <i class="ti ti-map-pin text-sm shrink-0"></i> Bucaramanga, Santander
+              </p>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Tiempo completo</span>
+                <span class="text-gray-400 text-xs">Hace 5 días</span>
+              </div>
+            </a>
+          </li>
+
+          <!-- Empleo 6 -->
+          <li>
+            <a href="detalle-empleo.html" class="card-hover bg-white border border-gray-200 rounded-xl p-5 flex flex-col gap-3 h-full">
+              <div class="flex items-center gap-3">
+                <span class="w-10 h-10 rounded-lg bg-[#0891B2] text-white font-bold text-sm flex items-center justify-center shrink-0">AI</span>
+                <div class="min-w-0">
+                  <h3 class="text-sm font-bold text-gray-900 leading-tight truncate">Auditor Interno</h3>
+                  <p class="text-gray-500 text-xs truncate">Auditores Asociados de Colombia</p>
+                </div>
+              </div>
+              <p class="flex items-center gap-1 text-gray-500 text-xs">
+                <i class="ti ti-map-pin text-sm shrink-0"></i> Cartagena, Bolívar
+              </p>
+              <div class="flex items-center justify-between gap-2 mt-1">
+                <span class="badge-empleo inline-block rounded-md px-2.5 py-1 font-medium">Tiempo completo</span>
+                <span class="text-gray-400 text-xs">Hace 1 semana</span>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="text-center mt-10">
+          <button type="button" class="btn-outline">
+            <i class="ti ti-chevron-down text-base"></i> Ver más empleos
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-gray-950 text-gray-400 pt-14 pb-8 px-4 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="col-span-2 lg:col-span-1">
+          <div class="font-black text-lg leading-tight text-white mb-3">
+            <span class="text-purple-400">ASESORY</span><br>CONTÁ
+          </div>
+          <p class="text-sm leading-relaxed mb-5">
+            Conectamos talento y brindamos soluciones contables para ayudarte a crecer.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-linkedin text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Enlaces</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+            <li><a href="asesorias.html" class="hover:text-white transition-colors">Asesorías contables</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Contadores independientes</a></li>
+            <li><a href="nosotros.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Para candidatos -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para candidatos</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html" class="hover:text-white transition-colors">Crear cuenta</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para empresas -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para empresas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=empresa" class="hover:text-white transition-colors">Publicar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para contadores -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para contadores</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=contador" class="hover:text-white transition-colors">Registrarme como contador</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Cómo funciona</a></li>
+            <li><a href="contadores.html#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
+        © 2024 ASESORY CONTA. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS compartido -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>

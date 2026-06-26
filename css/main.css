@@ -1,0 +1,301 @@
+/* =============================================
+   ASESORY CONTÁ — Estilos globales compartidos
+   ============================================= */
+
+/* Override del color primario de DaisyUI */
+:root, [data-theme=light] {
+  --p: 262 83% 58%;
+  --pf: 262 83% 49%;
+  --pc: 0 0% 100%;
+  --s: 262 60% 45%;
+  --sc: 0 0% 100%;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Anti-FOUC: ocultar el body hasta que los estilos estén listos */
+body {
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+body.styles-ready {
+  opacity: 1;
+}
+
+/* Si el JS no se ejecuta por alguna razón, asegurar que el contenido se vea igual */
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+}
+
+/* Navbar: link de página activa */
+.nav-active {
+  color: #7C3AED !important;
+  border-bottom: 2px solid #7C3AED;
+  border-radius: 0 !important;
+  padding-bottom: 2px;
+}
+
+/* Hover suave en links de navbar */
+.nav-link:hover {
+  color: #7C3AED;
+  background-color: #EDE9FE;
+  border-radius: 0.5rem;
+}
+
+/* Botón "Regístrate" del navbar: fondo morado + texto blanco en TODOS
+   los estados (normal, hover, active, focus, focus-visible). El !important
+   en color gana sobre DaisyUI (.btn:active/:focus) y sobre .nav-active. */
+.btn-registro,
+.btn-registro:link,
+.btn-registro:visited,
+.btn-registro:hover,
+.btn-registro:active,
+.btn-registro:focus,
+.btn-registro:focus-visible {
+  background-color: #7C3AED !important;
+  color: #ffffff !important;
+  border: none;
+}
+.btn-registro:hover {
+  background-color: #6D28D9 !important;
+}
+.btn-registro:focus-visible {
+  outline: 2px solid #4C1D95;
+  outline-offset: 2px;
+}
+
+/* Transición global para hover en cards */
+.card-hover {
+  transition: all 0.15s ease;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: #7C3AED;
+}
+
+/* Categorías: hover */
+.cat-card {
+  transition: all 0.15s ease;
+}
+.cat-card:hover {
+  background-color: #F3E8FF;
+  border-color: #7C3AED;
+  transform: translateY(-2px);
+}
+
+/* Hero: sección con gradiente sutil */
+.hero-bg {
+  background: linear-gradient(135deg, #F5F3FF 0%, #ffffff 60%);
+}
+
+/* Conector punteado entre pasos (sección ¿Cómo funciona?) */
+.step-connector {
+  flex: 1;
+  border-top: 2px dashed #C4B5FD;
+  margin-top: 28px;
+}
+
+/* Badge de empleo */
+.badge-empleo {
+  background-color: #EDE9FE;
+  color: #7C3AED;
+  border: none;
+  font-size: 0.75rem;
+}
+
+
+/* =============================================
+   HOME — tipografía, botones, motion y foco
+   ============================================= */
+
+/* ── Fuentes: Sora en títulos, Inter en cuerpo ── */
+/* body.font-sans gana sobre la utilidad .font-sans del <body>, así todo
+   el documento (incluidos <div>/<ul> sin regla propia) hereda Inter. */
+body, body.font-sans, p, a, span, button, input, li { font-family: 'Inter', sans-serif; }
+h1, h2, h3, .font-display,
+h1 span, h2 span, h3 span { font-family: 'Sora', sans-serif; }
+
+/* ── Escala de tipo ── */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.stat-number {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* ── Botones (responsabilidad única, no tocan padding de secciones) ── */
+.btn-solid, .btn-outline, .btn-white, .btn-ghost-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 0.625rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-solid { background: #7C3AED; color: #ffffff; }
+.btn-solid:hover { background: #6D28D9; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: #7C3AED; border: 1.5px solid #7C3AED; }
+.btn-outline:hover { background: #EDE9FE; }
+.btn-white { background: #ffffff; color: #4C1D95; font-weight: 700; }
+.btn-white:hover { background: #EDE9FE; }
+.btn-ghost-light {
+  background: rgba(255, 255, 255, 0.06);
+  color: #EDE9FE;
+  border: 1.5px solid rgba(237, 233, 254, 0.4);
+}
+.btn-ghost-light:hover { background: rgba(255, 255, 255, 0.14); }
+
+/* ── Flecha que se desliza en links de "ver más" ── */
+.link-arrow i { transition: transform 0.15s ease; }
+.link-arrow:hover i { transform: translateX(3px); }
+
+/* ── Foco visible para teclado (anillo morado) ── */
+a:focus-visible,
+button:focus-visible,
+label:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #7C3AED;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ── Scroll reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── Respeto a prefers-reduced-motion: sin reveals ni transforms ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .card-hover, .cat-card, .cat-pill, .role-tab, .btn-solid, .link-arrow i { transition: none; }
+  .card-hover:hover, .cat-card:hover, .btn-solid:hover { transform: none; }
+}
+
+
+/* =============================================
+   BUSCAR EMPLEO + DETALLE DE EMPLEO
+   ============================================= */
+
+/* ── Pills de categoría (selección única, solo visual) ── */
+.cat-pill {
+  border: 1px solid #E5E7EB;
+  border-radius: 9999px;
+  padding: 0.375rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.cat-pill:hover { background: #EDE9FE; border-color: #C4B5FD; color: #4C1D95; }
+.cat-pill.active { background: #7C3AED; color: #ffffff; border-color: #7C3AED; }
+
+/* ── Sidebar del detalle: sticky en desktop, estático en mobile ── */
+.job-sidebar {
+  position: sticky;
+  top: 88px;
+}
+@media (max-width: 1023px) {
+  .job-sidebar { position: static; }
+}
+
+
+/* =============================================
+   ASESORÍAS + CONTADORES INDEPENDIENTES
+   ============================================= */
+
+/* ── Hero con gradiente (página Contadores) ── */
+.hero-contadores {
+  background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 100%);
+}
+
+/* ── Badge de disponibilidad verde ── */
+.badge-disponible {
+  background: #D1FAE5;
+  color: #059669;
+}
+
+/* ── Variante pequeña de botón (ej. "Contactar" en cards de contador) ── */
+/* Se declara después de .btn-* para ganar en padding/tamaño. */
+.btn-sm-pill {
+  padding: 0.4rem 0.95rem;
+  font-size: 0.8125rem;
+}
+
+
+/* =============================================
+   LOGIN + REGISTRO (auth)
+   ============================================= */
+
+/* ── Tabs del selector de rol (página Registro) ── */
+.role-tab {
+  flex: 1 1 0%;
+  text-align: center;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #E5E7EB;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #6B7280;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.role-tab:hover { border-color: #C4B5FD; color: #4C1D95; }
+.role-tab.active { background: #7C3AED; color: #ffffff; border-color: #7C3AED; }
+
+
+/* =============================================
+   CONTACTO — acordeón FAQ (<details>/<summary>)
+   ============================================= */
+
+/* Quita el marcador/triángulo por defecto del <summary> */
+.faq-item summary { list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::marker { content: ''; }
+
+/* Rota el chevron al abrir */
+.faq-chevron { transition: transform 0.2s ease; }
+.faq-item[open] .faq-chevron { transform: rotate(180deg); }
+.faq-item[open] { border-color: #C4B5FD; }
+
+@media (prefers-reduced-motion: reduce) {
+  .faq-chevron { transition: none; }
+}

@@ -1,0 +1,313 @@
+﻿<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesión | Asesory Contá</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- Google Fonts: Sora (títulos) + Inter (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- DaisyUI -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.min.css">
+
+  <!-- Tabler Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+  <!-- Estilos globales del proyecto -->
+  <link rel="stylesheet" href="css/main.css">
+
+  <!-- Configuración de Tailwind -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7C3AED',
+            'primary-dark': '#4C1D95',
+            'primary-light': '#EDE9FE',
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Anti-FOUC: revela el body cuando los estilos están aplicados -->
+  <script>
+    function revealBody() {
+      document.body.classList.add('styles-ready');
+    }
+    // Revela en cuanto la página termina de cargar (Tailwind CDN ya aplicó estilos)
+    window.addEventListener('load', revealBody);
+    // Fallback de seguridad: si 'load' tarda demasiado, revelar igual a los 600ms
+    document.addEventListener('DOMContentLoaded', function () {
+      setTimeout(revealBody, 600);
+    });
+  </script>
+  <noscript>
+    <style> body { opacity: 1 !important; } </style>
+  </noscript>
+</head>
+<body class="bg-white font-sans">
+
+  <!-- ════════════════════════════════════════
+       NAVBAR
+  ════════════════════════════════════════ -->
+  <div class="navbar min-h-[72px] bg-white border-b border-gray-100 sticky top-0 z-50 px-4 lg:px-10">
+
+    <!-- Hamburger mobile -->
+    <div class="navbar-start">
+      <div class="dropdown lg:hidden">
+        <label tabindex="0" class="btn btn-ghost btn-sm px-2">
+          <i class="ti ti-menu-2 text-xl text-gray-600"></i>
+        </label>
+        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[100] p-3 shadow-lg bg-white rounded-xl border border-gray-100 w-60">
+          <li><a href="index.html" class="nav-page-link font-medium">Inicio</a></li>
+          <li><a href="buscar-empleo.html" class="nav-page-link">Buscar empleo</a></li>
+          <li><a href="asesorias.html" class="nav-page-link">Asesorías contables</a></li>
+          <li><a href="contadores.html" class="nav-page-link">Contadores independientes</a></li>
+          <li><a href="nosotros.html" class="nav-page-link">Sobre nosotros</a></li>
+          <li><a href="contacto.html" class="nav-page-link">Contacto</a></li>
+          <div class="divider my-1"></div>
+          <li><a href="login.html" class="nav-active">Iniciar sesión</a></li>
+          <li><a href="registro.html" class="bg-purple-700 text-white rounded-lg text-center justify-center font-semibold">Regístrate</a></li>
+        </ul>
+      </div>
+
+      <!-- Logo -->
+      <a href="index.html" class="flex items-center gap-2 ml-1">
+        <img src="images/logo.png" alt="Asesory Contá" class="h-12 lg:h-14 w-auto"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div class="hidden items-center leading-none">
+          <span class="text-2xl font-black leading-tight">
+            <span class="text-purple-700">ASESORY</span><br>
+            <span class="text-gray-900">CONTÁ</span>
+          </span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Links desktop -->
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal gap-0.5 text-sm">
+        <li><a href="index.html" class="nav-page-link nav-link font-medium">Inicio</a></li>
+        <li><a href="buscar-empleo.html" class="nav-page-link nav-link font-medium">Buscar empleo</a></li>
+        <li><a href="asesorias.html" class="nav-page-link nav-link font-medium">Asesorías contables</a></li>
+        <li><a href="contadores.html" class="nav-page-link nav-link font-medium">Contadores independientes</a></li>
+        <li><a href="nosotros.html" class="nav-page-link nav-link font-medium">Sobre nosotros</a></li>
+        <li><a href="contacto.html" class="nav-page-link nav-link font-medium">Contacto</a></li>
+      </ul>
+    </div>
+
+    <!-- Auth -->
+    <div class="navbar-end gap-2">
+      <a href="login.html" class="btn btn-ghost btn-sm normal-case text-sm text-gray-700 hidden sm:flex nav-active">
+        Iniciar sesión
+      </a>
+      <a href="registro.html" class="btn btn-sm normal-case text-sm text-white font-semibold bg-purple-700 hover:bg-purple-800 border-0 px-5 btn-registro">
+        Regístrate
+      </a>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       CONTENIDO DE LA PÁGINA
+  ════════════════════════════════════════ -->
+  <main>
+    <section class="bg-[#F5F3FF] py-12 lg:py-16 px-4" aria-labelledby="login-title">
+      <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden grid lg:grid-cols-2">
+
+        <!-- Panel izquierdo decorativo (solo desktop) -->
+        <div class="hidden lg:flex flex-col justify-between bg-[#4C1D95] text-white p-10">
+
+          <!-- Logo + eslogan -->
+          <div>
+            <div class="bg-white rounded-lg p-2 inline-block mb-8">
+              <img src="images/logo.png" alt="Asesory Contá" class="h-9 w-auto"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+              <span class="hidden font-black text-lg text-purple-700">ASESORY CONTÁ</span>
+            </div>
+            <h2 class="font-display font-bold text-2xl mb-3">Bienvenido de nuevo.</h2>
+            <p class="text-violet-200 leading-relaxed">
+              Accede a tu cuenta y continúa conectando con oportunidades contables.
+            </p>
+          </div>
+
+          <!-- Ilustración decorativa -->
+          <img src="images/grafica-removebg-preview.png"
+               alt="Ilustración de crecimiento contable"
+               class="w-full max-w-[260px] mx-auto my-6"
+               onerror="this.style.display='none'">
+
+          <!-- Bullets de valor -->
+          <ul class="space-y-3">
+            <li class="flex items-center gap-2.5 text-violet-100 text-sm">
+              <i class="ti ti-check text-[#C4B5FD] text-base shrink-0" aria-hidden="true"></i> Encuentra empleos contables
+            </li>
+            <li class="flex items-center gap-2.5 text-violet-100 text-sm">
+              <i class="ti ti-check text-[#C4B5FD] text-base shrink-0" aria-hidden="true"></i> Solicita asesorías expertas
+            </li>
+            <li class="flex items-center gap-2.5 text-violet-100 text-sm">
+              <i class="ti ti-check text-[#C4B5FD] text-base shrink-0" aria-hidden="true"></i> Gestiona tu perfil profesional
+            </li>
+          </ul>
+        </div>
+
+        <!-- Panel derecho: formulario -->
+        <div class="p-8 lg:p-10">
+          <h1 id="login-title" class="font-display font-extrabold text-2xl text-gray-900 mb-1">Iniciar sesión</h1>
+          <p class="text-gray-500 text-sm mb-6">Ingresa tus credenciales para acceder.</p>
+
+          <!-- Credenciales demo -->
+          <div class="bg-[#EFF6FF] border border-[#BFDBFE] rounded-lg p-4 text-sm mb-6">
+            <div class="flex gap-2.5">
+              <i class="ti ti-info-circle text-[#2563EB] text-base mt-0.5 shrink-0" aria-hidden="true"></i>
+              <div>
+                <p class="font-semibold text-gray-900 mb-1.5">Credenciales de prueba:</p>
+                <ul class="space-y-0.5 text-gray-600">
+                  <li>candidato@demo.com</li>
+                  <li>empresa@demo.com</li>
+                  <li>contador@demo.com</li>
+                </ul>
+                <p class="mt-1.5 text-gray-600">Contraseña para todas: <span class="font-semibold text-gray-900">Demo1234</span></p>
+                <button type="button" id="fill-demo" class="link-arrow text-[#2563EB] font-semibold mt-2.5 inline-flex items-center gap-1">
+                  Usar cuenta de candidato <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulario -->
+          <form id="login-form" novalidate class="space-y-4">
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">Correo electrónico</label>
+              <div class="relative">
+                <i class="ti ti-mail absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none" aria-hidden="true"></i>
+                <input id="email" name="email" type="email" autocomplete="email" required placeholder="tucorreo@ejemplo.com"
+                       class="w-full h-12 rounded-lg border border-gray-200 pl-10 pr-3 text-sm text-gray-900 focus:border-[#7C3AED]">
+              </div>
+            </div>
+
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700 mb-1.5">Contraseña</label>
+              <div class="relative">
+                <i class="ti ti-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg pointer-events-none" aria-hidden="true"></i>
+                <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••"
+                       class="w-full h-12 rounded-lg border border-gray-200 pl-10 pr-11 text-sm text-gray-900 focus:border-[#7C3AED]">
+                <button type="button" data-password-toggle="password" aria-label="Mostrar contraseña"
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 flex items-center justify-center text-gray-400 hover:text-[#7C3AED] rounded-md">
+                  <i class="ti ti-eye text-lg" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between gap-3 flex-wrap">
+              <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                <input type="checkbox" id="remember" class="checkbox checkbox-sm checkbox-primary"> Recordarme
+              </label>
+              <a href="#" class="text-sm text-[#7C3AED] font-medium hover:underline">¿Olvidaste tu contraseña?</a>
+            </div>
+
+            <div id="login-error" role="alert" class="hidden rounded-lg p-3 text-sm bg-[#FEF2F2] border border-[#FECACA] text-[#DC2626]"></div>
+
+            <button type="submit" class="btn-solid w-full">Iniciar sesión</button>
+
+            <p class="text-center text-sm text-gray-600">
+              ¿No tienes cuenta? <a href="registro.html" class="text-[#7C3AED] font-semibold hover:underline">Regístrate</a>
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════ -->
+  <footer class="bg-gray-950 text-gray-400 pt-14 pb-8 px-4 lg:px-10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mb-12">
+
+        <!-- Brand -->
+        <div class="col-span-2 lg:col-span-1">
+          <div class="font-black text-lg leading-tight text-white mb-3">
+            <span class="text-purple-400">ASESORY</span><br>CONTÁ
+          </div>
+          <p class="text-sm leading-relaxed mb-5">
+            Conectamos talento y brindamos soluciones contables para ayudarte a crecer.
+          </p>
+          <div class="flex gap-2">
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-facebook text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-linkedin text-sm"></i>
+            </a>
+            <a href="#" class="w-8 h-8 rounded-full border border-gray-700 flex items-center justify-center hover:border-purple-400 hover:text-purple-400 transition-colors">
+              <i class="ti ti-brand-instagram text-sm"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Enlaces -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Enlaces</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="index.html" class="hover:text-white transition-colors">Inicio</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+            <li><a href="asesorias.html" class="hover:text-white transition-colors">Asesorías contables</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Contadores independientes</a></li>
+            <li><a href="nosotros.html" class="hover:text-white transition-colors">Sobre nosotros</a></li>
+            <li><a href="contacto.html" class="hover:text-white transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Para candidatos -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para candidatos</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html" class="hover:text-white transition-colors">Crear cuenta</a></li>
+            <li><a href="buscar-empleo.html" class="hover:text-white transition-colors">Buscar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para empresas -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para empresas</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=empresa" class="hover:text-white transition-colors">Publicar empleo</a></li>
+          </ul>
+        </div>
+
+        <!-- Para contadores -->
+        <div>
+          <h4 class="text-white font-semibold text-sm mb-4">Para contadores</h4>
+          <ul class="space-y-2.5 text-sm">
+            <li><a href="registro.html?tipo=contador" class="hover:text-white transition-colors">Registrarme como contador</a></li>
+            <li><a href="contadores.html" class="hover:text-white transition-colors">Cómo funciona</a></li>
+            <li><a href="contadores.html#beneficios" class="hover:text-white transition-colors">Beneficios</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-6 text-center text-xs text-gray-600">
+        © 2024 ASESORY CONTA. Todos los derechos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS compartido -->
+  <script src="js/main.js"></script>
+  <script src="js/auth.js"></script>
+
+</body>
+</html>
